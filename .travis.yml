@@ -14,8 +14,7 @@ install:
   - pip list
   - flake8 --version
 script:
-  - python setup.py test -q
-  - flake8 pyflakes setup.py
+  - flake8 .
 matrix:
   allow_failures:
     - python: pypy
