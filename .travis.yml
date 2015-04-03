@@ -5,6 +5,7 @@ env:
   - DJANGO=1.8
 install:
   - pip install flake8
+  - pip install psycopg2
   - pip install -q Django==$DJANGO
 script:
   - flake8 .
