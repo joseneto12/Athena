@@ -2,11 +2,8 @@ language: python
 python:
   - 2.7
   - 3.2
-env:
-  - DJANGO=1.8
 install:
   pip install flake8
-before_script:
-  flake8 .
 script:
+  flake8 .
   python manage.py test
