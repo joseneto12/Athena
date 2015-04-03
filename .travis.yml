@@ -5,10 +5,8 @@ python:
 env:
   - DJANGO=1.8
 install:
-  - pip install flake8 pep8
-  - pip list
-  - flake8 --version
+  pip install flake8
 before_script:
-  - flake8 .
+  flake8 .
 script:
-  - python manage.py test
+  python manage.py test
