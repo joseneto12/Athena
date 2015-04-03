@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import hashlib
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -78,7 +77,7 @@ __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 with open(os.path.join(__location__, 'password.txt'), 'r') as f:
-  credentials = f.readline()
+    credentials = f.readline()
 
 user, password = credentials.split(':')
 password = password.rstrip()
@@ -88,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Parthenon',
-        'USER': user, 
+        'USER': user,
         'PASSWORD': password,
         'HOST': '45.55.184.36',
         'PORT': '',
