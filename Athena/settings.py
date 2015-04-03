@@ -73,27 +73,37 @@ WSGI_APPLICATION = 'Athena.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-__location__ = os.path.realpath(
-    os.path.join(os.getcwd(), os.path.dirname(__file__)))
-
-with open(os.path.join(__location__, 'password.txt'), 'r') as f:
-    credentials = f.readline()
-
-user, password = credentials.split(':')
-password = password.rstrip()
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Parthenon',
-        'USER': user,
-        'PASSWORD': password,
-        'HOST': '45.55.184.36',
-        'PORT': '',
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql_psycopg2',
+            'NAME':     'travisci',
+            'USER':     'postgres',
+            'PASSWORD': '',
+            'HOST':     'localhost',
+            'PORT':     '',
+        }
     }
-}
+else:
+    __location__ = os.path.realpath(
+        os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
+    with open(os.path.join(__location__, 'password.txt'), 'r') as f:
+        credentials = f.readline()
+
+    user, password = credentials.split(':')
+    password = password.rstrip()
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'Parthenon',
+            'USER': user,
+            'PASSWORD': password,
+            'HOST': '45.55.184.36',
+            'PORT': '',
+        }
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

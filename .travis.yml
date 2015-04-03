@@ -1,12 +1,16 @@
 language: python
 python:
-  - 2.7
+    - 2.6
+    - 2.7
+services: postgresql
 env:
-  - DJANGO=1.8
+    - DJANGO=1.8
 install:
-  - pip install flake8
-  - pip install psycopg2
-  - pip install -q Django==$DJANGO
+    - pip install flake8 -- quiet
+    - pip install psycopg2 --quiet
+    - pip install -q Django==$DJANGO --quiet
+before_script:
+    - psql -c "CREATE DATABASE testDB;" -U postgres
 script:
-  - flake8 .
-  #- python manage.py test #precisa configurar db pro travis pra isso funcionar
+    - flake8 .
+    - python manage.py test #precisa configurar db pro travis pra isso funcionar
