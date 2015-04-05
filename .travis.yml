@@ -12,4 +12,4 @@ before_script:
     - psql -c "CREATE DATABASE testDB;" -U postgres
 script:
     - flake8 .
-    - python manage.py test #precisa configurar db pro travis pra isso funcionar
+    - python manage.py test
